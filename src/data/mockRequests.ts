@@ -1,4 +1,5 @@
 import { AssistanceRequest, UserProfile } from '../types';
+import { APP_IMAGES } from '../assets/images/index';
 
 export const INITIAL_REQUESTS: AssistanceRequest[] = [
   {
@@ -25,7 +26,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 4,
     isUrgent: true,
-    imageThumbnail: '/src/assets/images/bayanihan_hero_community_1793058128465.jpg',
+    imageThumbnail: APP_IMAGES.categories.medical,
     recentSupporters: [
       { id: 'sup-1', name: 'Bea Alcantara', amount: 1000, message: 'Pagaling po kayo Nanay Remedios. Dasal namin ang inyong kalakasan.', timeAgo: '2h ago' },
       { id: 'sup-2', name: 'Kuya Marco', amount: 500, message: 'Ingat po kayo palagi.', timeAgo: '5h ago' },
@@ -65,6 +66,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 2,
     isUrgent: true,
+    imageThumbnail: APP_IMAGES.categories.bills,
     recentSupporters: [
       { id: 'sup-4', name: 'Ramon Garcia', amount: 1000, message: 'Para makabiyahe ka na ulit Mang Danilo. Tulong ng kapwa driver.', timeAgo: '3h ago' },
       { id: 'sup-5', name: 'Ate Lolit', amount: 200, message: 'Kaya yan Mang Danilo! Tuloy ang laban.', timeAgo: '1d ago' },
@@ -98,7 +100,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
       { item: '40 kg dried green munggo (mongo beans) wholesale', amount: 3200 },
       { item: 'Wholesale sardines and eggs for distribution kits', amount: 2800 },
     ],
-    imageThumbnail: '/src/assets/images/bayanihan_care_market_1793058128478.jpg',
+    imageThumbnail: APP_IMAGES.categories.food,
     urgentDeadlineDays: 6,
     isUrgent: false,
     recentSupporters: [
@@ -140,6 +142,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 3,
     isUrgent: true,
+    imageThumbnail: APP_IMAGES.categories.education,
     recentSupporters: [
       { id: 'sup-9', name: 'Teacher Marites', amount: 1000, message: 'Huwag susuko Joshua! Magiging lisensyadong nars ka.', timeAgo: '6h ago' },
       { id: 'sup-10', name: 'Batchmate Anon', amount: 300, message: 'Go kuys!', timeAgo: '1d ago' },
@@ -175,6 +178,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 2,
     isUrgent: true,
+    imageThumbnail: APP_IMAGES.categories.housing,
     recentSupporters: [
       { id: 'sup-11', name: 'Kagawad Joel', amount: 1500, message: 'Mag-ingat po kayo Mang Ernesto.', timeAgo: '8h ago' },
       { id: 'sup-12', name: 'Marikina Resident', amount: 500, message: 'Para sa bubong ng mga bata.', timeAgo: '12h ago' },
@@ -210,6 +214,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 0,
     isUrgent: false,
+    imageThumbnail: APP_IMAGES.categories.medical,
     recentSupporters: [
       { id: 'sup-13', name: 'Doc Patricia', amount: 1000, message: 'Inom agad ng gamot si Baby Arlo on time.', timeAgo: '2h ago' },
       { id: 'sup-14', name: 'Cebuana Friend', amount: 500, message: 'Amping kamo kanunay!', timeAgo: '5h ago' },
@@ -248,6 +253,7 @@ export const INITIAL_REQUESTS: AssistanceRequest[] = [
     ],
     urgentDeadlineDays: 1,
     isUrgent: true,
+    imageThumbnail: APP_IMAGES.categories.bills,
     recentSupporters: [
       { id: 'sup-15', name: 'Davao Neighbor', amount: 500, message: 'Sana maibalik agad ang kuryente ni Tatay.', timeAgo: '1d ago' },
       { id: 'sup-16', name: 'Glenn P.', amount: 700, message: 'Tulong po mula sa kapwa Davaoeño.', timeAgo: '1d ago' },

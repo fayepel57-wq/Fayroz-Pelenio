@@ -5,6 +5,7 @@ import {
   Users, Clock, ArrowUpRight, Heart, FileCheck, Bookmark, BookmarkCheck, 
   AlertCircle, CheckCircle2, ArrowRight 
 } from 'lucide-react';
+import { BayanihanImage } from './BayanihanImage';
 
 interface RequestCardProps {
   request: AssistanceRequest;
@@ -79,40 +80,40 @@ export const RequestCard: React.FC<RequestCardProps> = ({
     <div className={`bg-white rounded-xl border transition-all flex flex-col justify-between group shadow-2xs ${
       isFullyFunded ? 'border-emerald-300/80 bg-emerald-50/10' : 'border-stone-200 hover:border-stone-300'
     }`}>
-      {/* Optional image thumbnail */}
-      {request.imageThumbnail && (
-        <div className="relative h-44 w-full bg-stone-100 overflow-hidden border-b border-stone-100">
-          <img
-            src={request.imageThumbnail}
-            alt={request.title}
-            className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute top-3 left-3 flex items-center gap-1.5">
-            {getPriorityBadge()}
-            {isFullyFunded && (
-              <span className="bg-[#14532D] text-white text-[11px] font-semibold px-2 py-0.5 rounded-sm shadow-xs uppercase tracking-wider">
-                Fully Funded
-              </span>
-            )}
-          </div>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleFollow(request.id);
-            }}
-            className={`absolute top-3 right-3 p-1.5 rounded-full transition-all cursor-pointer shadow-xs ${
-              isFollowed 
-                ? 'bg-[#14532D] text-white' 
-                : 'bg-white/90 text-stone-700 hover:bg-white hover:text-[#14532D]'
-            }`}
-            title={isFollowed ? 'Unfollow this request' : 'Follow this request'}
-          >
-            {isFollowed ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
-          </button>
+      {/* Resilient image header with graceful category fallback */}
+      <div className="relative h-44 w-full bg-stone-100 overflow-hidden border-b border-stone-100">
+        <BayanihanImage
+          src={request.imageThumbnail}
+          alt={request.title}
+          category={request.category}
+          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+          containerClassName="relative h-44 w-full overflow-hidden"
+          fallbackKicker={getCategoryLabel(request.category)}
+        />
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10">
+          {getPriorityBadge()}
+          {isFullyFunded && (
+            <span className="bg-[#14532D] text-white text-[11px] font-semibold px-2 py-0.5 rounded-sm shadow-xs uppercase tracking-wider">
+              Fully Funded
+            </span>
+          )}
         </div>
-      )}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleFollow(request.id);
+          }}
+          className={`absolute top-3 right-3 p-1.5 rounded-full transition-all cursor-pointer shadow-xs z-10 ${
+            isFollowed 
+              ? 'bg-[#14532D] text-white' 
+              : 'bg-white/90 text-stone-700 hover:bg-white hover:text-[#14532D]'
+          }`}
+          title={isFollowed ? 'Unfollow this request' : 'Follow this request'}
+        >
+          {isFollowed ? <BookmarkCheck className="w-4 h-4" /> : <Bookmark className="w-4 h-4" />}
+        </button>
+      </div>
 
       <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
         <div className="space-y-2.5">

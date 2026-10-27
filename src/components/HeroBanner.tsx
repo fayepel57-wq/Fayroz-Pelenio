@@ -1,6 +1,8 @@
 import React from 'react';
 import { formatPeso } from '../utils/formatters';
 import { ShieldCheck, Heart, Sparkles, ArrowRight, Info } from 'lucide-react';
+import { APP_IMAGES } from '../assets/images/index';
+import { BayanihanImage } from './BayanihanImage';
 
 interface HeroBannerProps {
   onAskHelpClick: () => void;
@@ -58,7 +60,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
               </button>
               <button
                 onClick={onBrowseUrgentClick}
-                className="px-5 py-3 text-sm font-medium text-[#FBF9F5] border border-emerald-600/70 hover:bg-emerald-800/40 active:scale-[0.99] rounded-md transition-all cursor-pointer inline-flex items-center gap-2"
+                className="px-5 py-3 text-sm font-semibold text-[#FBF9F5] border border-emerald-600/70 hover:bg-emerald-800/40 active:scale-[0.99] rounded-md transition-all cursor-pointer inline-flex items-center gap-2"
               >
                 <Heart className="w-4 h-4 text-emerald-300" />
                 <span>Help Others Instead</span>
@@ -85,12 +87,15 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
           {/* Right Column: Visual Community Anchor */}
           <div className="lg:col-span-5">
             <div className="relative rounded-xl overflow-hidden shadow-lg border border-emerald-800/50 bg-[#0F3E22]">
-              <img
-                src="/src/assets/images/bayanihan_hero_community_1793058128465.jpg"
-                alt="Filipino community sharing food and mutual aid care boxes in a local barangay"
-                className="w-full h-72 sm:h-80 object-cover"
-                referrerPolicy="no-referrer"
-              />
+              <div className="h-72 sm:h-80 w-full overflow-hidden">
+                <BayanihanImage
+                  src={APP_IMAGES.hero}
+                  alt="Filipino community sharing food and mutual aid care boxes in a local barangay"
+                  category="food"
+                  className="w-full h-full object-cover"
+                  fallbackKicker="Bayanihan Community Spirit"
+                />
+              </div>
               <div className="p-4 bg-[#0F3E22] border-t border-emerald-800/40 text-xs text-emerald-200 flex items-center justify-between">
                 <span>Tradisyong Bayanihan sa Bawat Barangay</span>
                 <span className="font-semibold text-emerald-100">Simulated Mutual Aid</span>

@@ -8,6 +8,7 @@ import {
   X, Heart, ShieldCheck, FileCheck, Share2, MessageSquare, Check, 
   AlertCircle, Info, Sparkles, Bookmark, BookmarkCheck, ArrowRight, Receipt, CheckCircle2 
 } from 'lucide-react';
+import { BayanihanImage } from './BayanihanImage';
 
 interface RequestDetailModalProps {
   request: AssistanceRequest | null;
@@ -126,48 +127,33 @@ export const RequestDetailModal: React.FC<RequestDetailModalProps> = ({
           </button>
         </div>
 
-        {/* Optional Image Banner */}
-        {request.imageThumbnail && (
-          <div className="relative h-60 w-full bg-stone-100 overflow-hidden">
-            <img
-              src={request.imageThumbnail}
-              alt={request.title}
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-stone-950/20 to-transparent" />
-            <div className="absolute bottom-4 left-6 right-6 text-white space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-semibold text-emerald-200">
-                  {getCategoryLabel(request.category)} · {request.location}
-                </span>
-                <span className="text-xs font-semibold px-2 py-0.5 rounded-sm bg-white/20 text-white">
-                  {getPriorityLabel(request.priority)}
-                </span>
-              </div>
-              <h2 className="font-heading text-2xl font-bold text-white text-balance">
-                {request.title}
-              </h2>
+        {/* Resilient Image Banner with graceful fallback */}
+        <div className="relative h-60 w-full bg-stone-100 overflow-hidden">
+          <BayanihanImage
+            src={request.imageThumbnail}
+            alt={request.title}
+            category={request.category}
+            className="w-full h-full object-cover"
+            containerClassName="relative h-60 w-full overflow-hidden"
+            fallbackKicker={getCategoryLabel(request.category)}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/30 to-transparent pointer-events-none" />
+          <div className="absolute bottom-4 left-6 right-6 text-white space-y-1 z-10 pointer-events-none">
+            <div className="flex items-center gap-2">
+              <span className="text-xs uppercase tracking-wider font-semibold text-emerald-200">
+                {getCategoryLabel(request.category)} · {request.location}
+              </span>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-sm bg-white/20 text-white">
+                {getPriorityLabel(request.priority)}
+              </span>
             </div>
+            <h2 className="font-heading text-2xl font-bold text-white text-balance">
+              {request.title}
+            </h2>
           </div>
-        )}
+        </div>
 
         <div className="p-6 sm:p-8 space-y-7">
-          {!request.imageThumbnail && (
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs">
-                <span className="uppercase tracking-wider font-semibold text-[#14532D]">
-                  {getCategoryLabel(request.category)} · {request.location}
-                </span>
-                <span className="font-semibold text-stone-600 bg-stone-100 px-2 py-0.5 rounded">
-                  {getPriorityLabel(request.priority)}
-                </span>
-              </div>
-              <h2 className="font-heading text-2xl sm:text-3xl font-bold text-stone-900 text-balance">
-                {request.title}
-              </h2>
-            </div>
-          )}
 
           {/* Fully Funded Banner & "Help Others Instead" */}
           {isFullyFunded && (

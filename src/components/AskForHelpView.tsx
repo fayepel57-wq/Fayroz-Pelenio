@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AssistanceCategory, AssistanceRequest, CostItem, NeedPriority, UserProfile } from '../types';
 import { formatPeso, getCategoryLabel, getPriorityLabel, getPriorityDescription } from '../utils/formatters';
+import { getCategoryImageUrl } from '../assets/images/index';
 import { 
   HeartHandshake, Plus, Trash2, ShieldAlert, CheckCircle, Info, UploadCloud, 
   ArrowRight, ArrowLeft, FileText, AlertTriangle, Check, Eye, HelpCircle
@@ -124,6 +125,7 @@ export const AskForHelpView: React.FC<AskForHelpViewProps> = ({
       costBreakdown: costItems,
       urgentDeadlineDays: parseInt(urgentDeadlineDays) || 3,
       isUrgent: priority === 'urgent',
+      imageThumbnail: getCategoryImageUrl(category),
       recentSupporters: [],
       createdAt: new Date().toISOString().split('T')[0],
       authorId: currentUser?.id || 'usr-danilo',
